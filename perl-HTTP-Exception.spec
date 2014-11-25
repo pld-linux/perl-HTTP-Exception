@@ -1,12 +1,11 @@
 #
 # Conditional build:
 %bcond_without	tests		# do not perform "make test"
-#
+
 %define		pdir	HTTP
 %define		pnam	Exception
 %include	/usr/lib/rpm/macros.perl
 Summary:	HTTP::Exception - throw HTTP-Errors as (Exception::Class-) Exceptions
-#Summary(pl.UTF-8):	
 Name:		perl-HTTP-Exception
 Version:	0.03001
 Release:	1
@@ -15,8 +14,7 @@ License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/HTTP/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	3541f70932c99c0c44a1d0666bfec151
-# generic URL, check or change before uncommenting
-#URL:		http://search.cpan.org/dist/HTTP-Exception/
+URL:		http://search.cpan.org/dist/HTTP-Exception/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -34,9 +32,6 @@ mechanisms apply as with Exception::Class-classes. In fact have a look
 at Exception::Class' docs for more general information on exceptions
 and Exception::Class::Base for information on what methods a caught
 exception also has.
-
-# %description -l pl.UTF-8
-# TODO
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
