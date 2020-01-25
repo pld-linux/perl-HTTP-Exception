@@ -4,7 +4,6 @@
 
 %define		pdir	HTTP
 %define		pnam	Exception
-%include	/usr/lib/rpm/macros.perl
 Summary:	HTTP::Exception - throw HTTP-Errors as (Exception::Class-) Exceptions
 Name:		perl-HTTP-Exception
 Version:	0.03001
