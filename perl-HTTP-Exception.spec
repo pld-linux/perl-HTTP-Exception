@@ -6,21 +6,21 @@
 %define		pnam	Exception
 Summary:	HTTP::Exception - throw HTTP-Errors as (Exception::Class-) Exceptions
 Name:		perl-HTTP-Exception
-Version:	0.03001
-Release:	2
+Version:	0.04007
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/HTTP/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	3541f70932c99c0c44a1d0666bfec151
+Source0:	https://www.cpan.org/authors/id/T/TM/TMUELLER/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	c0ad55ba7fb2717c3b93de16522b28d7
 URL:		http://search.cpan.org/dist/HTTP-Exception/
-BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	perl-Exception-Class >= 1.29
 BuildRequires:	perl-HTTP-Message >= 5.817
 BuildRequires:	perl-Test-Exception >= 0.29
+BuildRequires:	perl-Test-NoWarnings >= 1.04
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,17 +36,17 @@ exception also has.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Build.PL \
-	destdir=$RPM_BUILD_ROOT \
-	installdirs=vendor
-./Build
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
+%{__make}
 
-%{?with_tests:./Build test}
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-./Build install
+%{__make} pure_install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
